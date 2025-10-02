@@ -1,7 +1,7 @@
 DC = docker compose
 D = docker
 
-.PHONY: up down build dev
+.PHONY: up down build composer-dumpautoload composer-install dev
 
 up:
 	$(DC) up -d
