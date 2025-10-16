@@ -17,14 +17,19 @@ class Telephone implements Stringable
 
     public function setDdd(string $ddd)
     {
-        $options = [
-            'options' => [
-                'regexp' => '/\d{2}/',
-            ],
-        ];
+        // Option 1: Validation with filter_var()
+        // $options = [
+        //     'options' => [
+        //         'regexp' => '/\d{2}/',
+        //     ],
+        // ];
+        // if (filter_var($ddd, FILTER_VALIDATE_REGEXP, $options) === false) {
+        //     throw new \InvalidArgumentException('Invalid phone ddd');
+        // }
 
-        if (filter_var($ddd, FILTER_VALIDATE_REGEXP, $options) === false) {
-            throw new \InvalidArgumentException('Invalid phone ddd');
+        // Option 2: Validation with preg_match()
+        if (preg_match('/^\d{2}$/', $ddd) !== 1) {
+            throw new \InvalidArgumentException('Invalid ddd');
         }
 
         $this->ddd = $ddd;
@@ -32,13 +37,18 @@ class Telephone implements Stringable
 
     public function setNumber(string $number)
     {
-        $options = [
-            'options' => [
-                'regexp' => '/\d{8,9}/'
-            ]
-        ];
+        // Option 1: Validation with filter_var()
+        // $options = [
+        //     'options' => [
+        //         'regexp' => '/\d{8,9}/'
+        //     ]
+        // ];
+        // if (filter_var($number, FILTER_VALIDATE_REGEXP, $options) === false) {
+        //     throw new \InvalidArgumentException('Invalid phone number');
+        // }
 
-        if (filter_var($number, FILTER_VALIDATE_REGEXP, $options) === false) {
+        // Option 2: Validation with preg_match()
+        if (preg_match('/^\d{8,9}$/', $number) !== 1) {
             throw new \InvalidArgumentException('Invalid phone number');
         }
 

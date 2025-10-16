@@ -7,10 +7,18 @@ use Course\Architecture\Telephone;
 
 class TelephoneTest extends TestCase
 {
-    public function testTelephoneInInvalidFormatShouldNotExist()
+    public function testTelephoneWithNumberInInvalidFormatShouldNotExist()
     {
         $this->expectException(\InvalidArgumentException::class);
-        new Telephone('abc', '1234');
+        $this->expectExceptionMessage('Invalid phone number');
+        new Telephone('12', '1234');
+    }
+
+    public function testTelephoneWithDddInInvalidFormatShouldNotExist()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid ddd');
+        new Telephone('123', '12345678');
     }
 
     public function testTelephoneMustBeAbleToBeRepresentedAsAString()
