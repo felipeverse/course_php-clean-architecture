@@ -6,10 +6,15 @@ class Student
 {
     private string $cpf;
     private string $name;
-    private Email $mail;
+    private Email $email;
     private array $telephones;
 
-    public function __construct(Cpf $cpf, string $name, Email $email) {}
+    public function __construct(string $name, Cpf $cpf, Email $email)
+    {
+        $this->name = $name;
+        $this->cpf = $cpf;
+        $this->email = $email;
+    }
 
     public function addTelephone(string $ddd, string $number)
     {
