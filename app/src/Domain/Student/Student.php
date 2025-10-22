@@ -1,8 +1,9 @@
 <?php
 
-namespace Course\Architecture\Student;
+namespace Course\Architecture\Domain\Student;
 
-use Course\Architecture\Cpf;
+use Course\Architecture\Domain\Cpf;
+
 
 class Student
 {

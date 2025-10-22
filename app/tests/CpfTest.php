@@ -2,8 +2,8 @@
 
 namespace Course\Architecture\Tests;
 
-use Course\Architecture\Cpf;
 use PHPUnit\Framework\TestCase;
+use Course\Architecture\Domain\Cpf;
 
 class CpfTest extends TestCase
 {
