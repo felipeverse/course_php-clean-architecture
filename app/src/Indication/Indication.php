@@ -1,6 +1,8 @@
 <?php
 
-namespace Course\Architecture;
+namespace Course\Architecture\Indication;
+
+use Course\Architecture\Student\Student;
 
 class Indication
 {

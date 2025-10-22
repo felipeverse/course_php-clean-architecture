@@ -3,7 +3,7 @@
 namespace Course\Architecture\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Course\Architecture\Telephone;
+use Course\Architecture\Student\Telephone;
 
 class TelephoneTest extends TestCase
 {

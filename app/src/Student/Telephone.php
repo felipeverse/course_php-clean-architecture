@@ -1,6 +1,6 @@
 <?php
 
-namespace Course\Architecture;
+namespace Course\Architecture\Student;
 
 use Stringable;
 
