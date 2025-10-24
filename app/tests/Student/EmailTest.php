@@ -1,6 +1,6 @@
 <?php
 
-namespace course\Architecture\Tests;
+namespace course\Architecture\Tests\Student;
 
 use PHPUnit\Framework\TestCase;
 use Course\Architecture\Domain\Student\Email;
