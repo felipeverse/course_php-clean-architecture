@@ -2,11 +2,18 @@ services:
     app:
         build:
             context: ./docker/app
+            args:
+                UID: ${UID:-1000}
+                GID: ${GID:-1000}
         volumes:
             - ./app:/var/www/html
             - ./app/composer.json:/var/www/html/composer.json
             - ./app/composer.lock:/var/www/html/composer.lock
         container_name: php_app
+        depends_on:
+            - mysql
+        networks:
+            - course_php-clean-architecture
 
     nginx:
         image: nginx:stable
@@ -18,18 +25,27 @@ services:
         depends_on:
             - app
         container_name: nginx_app
-
-    # mysql
-    # db:
-    #   image: mysql:8.0
-    #   environment:
-    #     MYSQL_ROOT_PASSWORD: root
-    #     MYSQL_DATABASE: app
-    #     MYSQL_USER: user
-    #     MYSQL_PASSWORD: secret
-    #   ports:
-    #     - "3309:3306"
-    #   volumes:
-    #     - db_data:/var/lib/mysql
-# volumes:
-#     db_data:
+        networks:
+            - course_php-clean-architecture
+    mysql:
+        image: mysql:8.0
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: database
+            MYSQL_USER: user
+            MYSQL_PASSWORD: password
+        ports:
+            - "3309:3306"
+        volumes:
+            - ./docker/mysql/:/var/lib/mysql
+        container_name: mysql_app
+        networks:
+            - course_php-clean-architecture
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            interval: 5s
+            timeout: 3s
+            retries: 10
+networks:
+    course_php-clean-architecture:
+        driver: bridge

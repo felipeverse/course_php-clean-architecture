@@ -35,6 +35,11 @@ class Telephone implements Stringable
         $this->ddd = $ddd;
     }
 
+    public function ddd(): string
+    {
+        return $this->ddd;
+    }
+
     public function setNumber(string $number)
     {
         // Option 1: Validation with filter_var()
@@ -53,6 +58,11 @@ class Telephone implements Stringable
         }
 
         $this->number = $number;
+    }
+
+    public function number(): string
+    {
+        return $this->number;
     }
 
     public function __toString(): string

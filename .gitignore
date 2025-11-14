@@ -1,1 +1,6 @@
-/app/vendor/
+
+app/.env
+app/vendor/*
+
+docker/mysql/*
+!docker/mysql/.gitkeep
