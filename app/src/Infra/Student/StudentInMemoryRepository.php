@@ -20,13 +20,16 @@ class StudentInMemoryRepository implements StudentRepositoryInterface
 
     public function getByCpf(Cpf $cpf): Student
     {
-        $filteredStudents = array_filter($this->students, fn (Student $student) => $student->cpf === $cpf);
-        
+        $filteredStudents = array_filter(
+            $this->students,
+            fn(Student $student) => $student->cpf() === $cpf
+        );
+
         if (count($filteredStudents) === 0) {
             throw new StudentNotFoundExpcetion('Student with $cpf cpf not found');
         }
 
-        return array_first($filteredStudents);
+        return $filteredStudents[0];
     }
 
     public function getAll(): array
